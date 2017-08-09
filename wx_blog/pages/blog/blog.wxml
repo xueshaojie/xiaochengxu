@@ -1,0 +1,16 @@
+<view class="container-main">
+
+    <block wx:for="{{articles}}" wx:key="articles" wx:for-item="article">
+      <view class="list-item" id="{{article.id}}" title="{{article.title}}" >
+
+        <view class="title">
+          <view class="title-name">{{article.title}}</view>
+        </view>
+
+        <view class="bar-container">
+          <view class="create-time">{{article.text}}</view>
+        </view>
+      </view>
+    </block>
+
+</view>>
