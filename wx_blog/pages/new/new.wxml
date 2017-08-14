@@ -8,6 +8,6 @@
     </view>
   </view>
   <view class='section'>
-    <button class='tappable' formType='submit'>创建</button>
+    <button bindtap="bindViewTap" class='tappable' formType='submit'>创建</button>
   </view>
 </form>

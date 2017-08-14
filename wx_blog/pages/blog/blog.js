@@ -16,6 +16,12 @@ Page({
     ]
   },
 
+  bindViewTap: function() {
+    wx.navigateTo({
+      url: '../new/new'
+    })
+  },
+
   onLoad: function () {
     console.log('onLoad 生命周期函数--监听页面加载')
     var that = this;

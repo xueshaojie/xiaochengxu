@@ -3,7 +3,13 @@
 var app = getApp()
 
 Page({
-  data: { 
+  data: {
+  },
+
+  bindViewTap: function() {
+    wx.navigateTo({
+      url: '../index/index'
+    })
   },
 
   formSubmit: function(e) {
@@ -29,6 +35,19 @@ Page({
           return;
         }
       }
+
+      // success: function (res) {
+      // // console.log(res);
+      //   if (res.data.ret == 200) {
+      //    //something to do
+      //   }
+      //   else{
+      //    //something to do
+      //   }
+      // }
+      // fail: function (res) {
+      //   console.log(res);
+      // }
     })
   },
   onToastChanged: function() {

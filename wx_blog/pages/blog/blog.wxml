@@ -10,6 +10,10 @@
         <view class="bar-container">
           <view class="create-time">{{article.text}}</view>
         </view>
+
+        <view>
+        <button bindtap="bindViewTap" class='tappable' formType='submit'>编辑</button>
+        </view>
       </view>
     </block>
 
