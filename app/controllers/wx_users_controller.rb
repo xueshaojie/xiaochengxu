@@ -50,8 +50,10 @@ class WxUsersController < ApplicationController
           unionId: unionId
         )
       end
+    end
+  end
 
-
+end
       #   signature = params[:signature]
       #   rawdata = params[:rawdata]
       #   signature2 = sha1(rawdata.session_key);
@@ -65,10 +67,5 @@ class WxUsersController < ApplicationController
       #   return redirect_to auth_back
       # end
 
-    rescue => e
-      print 'message,错误'
-    end
 
   # end
-
-end
