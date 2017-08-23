@@ -1,31 +1,39 @@
-<%= form_for @article do |f| %>
-
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@article.errors.count, "error") %>
-        prohibited
-        this article form being saved:
-      </h2>
-      <ul>
-        <% @article.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
+<%= form_for @article, validate: true, html: {class: 'form'} do |f| %>
+  <div class="modal-body">
+    <div class="form-group">
+      <label class="control-label">文章标题</label>
+      <div class="clearfix">
+        <%= f.text_field :title, maxlength: 30, class: "col-xs-12" %>
+      </div>
     </div>
-  <% end %>
 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </p>
+    <div class="form-group">
+      <label class="control-label">所属分类</label>
+      <div class="clearfix">
+        <%= f.select :category, Article.category_options[0..-1], {}, class: 'col-xs-12 select' %>
+      </div>
+    </div>
 
-  <p>
-    <%= f.label :text %><br>
-    <%= f.text_area :text %>
-  </p>
+    <div class="form-group">
+      <label class="control-label">状态</label>
+      <div class="clearfix">
+        <%= f.select :status, Article.status_options[0..-1], {}, class: 'col-xs-12 select' %>
+      </div>
+    </div>
 
-  <p>
-    <%= f.submit %>
-  </p>
+    <div class="form-group">
+      <label class="control-label">文章内容</label>
+      <div class="clartfix">
+        <%= f.text_area :text, class: "col-xs-12" %>
+        <%#= render "shared/form_rich_text", field_name: "text", obj: @article, f: f, wrapper_html_options: {class: "clearfix"} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="clearfix"></div>
+  <div class="modal-footer">
+    <!-- <button type="submit" class="btn btn-sm btn-primary form-submit" data-fn="submit">确定</button> -->
+    <%= f.submit "确定", class: "btn btn-sm btn-primary"%>
+    <%= link_to '取消', list_articles_path, class: "btn btn-sm btn-primary" %>
+  </div>
 <% end %>
