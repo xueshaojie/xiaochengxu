@@ -23,19 +23,12 @@ class WxUsersController < ApplicationController
       session[:third_session] = {}
       session[:third_session][:openid] = openid
       session[:third_session][:session_key] = session_key
-
       WxUser.create(openid: openid) unless WxUser.find_by_openid(openid)?
 
       #fruit = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
       middle = WXBizDataCrypt.new(app_id, session_key)
       fruit = middle.decrypt(encrypted_data, iv)
-      if (null != fruit && fruit.length() > 0)
-        print "msg:解密成功"
-        openId, nickName, gender, city, province, country, avatarUrl, unionId = fruit.values_at('openId', 'nickName', 'gender', 'city', 'province', 'country', 'avatarUrl', 'unionId')
-
-      else
-        print "msg:解密失败"
-      end
+      openId, nickName, gender, city, province, country, avatarUrl, unionId = fruit.values_at('openId', 'nickName', 'gender', 'city', 'province', 'country', 'avatarUrl', 'unionId')
 
       if openId == openid
         WxUser.find_by_openid(openid).update(
