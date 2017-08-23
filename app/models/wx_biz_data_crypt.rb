@@ -15,7 +15,7 @@ class WxBizDataCrypt
     encrypted_data = Base64.decode64(encrypted_data)
     iv = Base64.decode64(iv)
 
-    cipher = OpenSSL::Cipher::AES.new(128, :CBC)
+    cipher = OpenSSL::Cipher::AES.new(128, ':CBC')
     cipher.decrypt
     # cipher.padding = 0
     cipher.key = @session_key
