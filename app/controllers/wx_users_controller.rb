@@ -26,12 +26,12 @@ class WxUsersController < ApplicationController
 
       WxUser.create(openid: openid) unless WxUser.find_by_openid(openid)?
 
-      #result1 = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
-      result2 = WXBizDataCrypt.new(app_id, session_key)
-      result1 = result2.decrypt(encrypted_data, iv)
-      if (null != result1 && result1.length() > 0)
+      #fruit = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
+      pc = WXBizDataCrypt.new(app_id, session_key)
+      fruit = pc.decrypt(encrypted_data, iv)
+      if (null != fruit && fruit.length() > 0)
         print "msg:解密成功"
-        openId, nickName, gender, city, province, country, avatarUrl, unionId = result1.values_at('openId', 'nickName', 'gender', 'city', 'province', 'country', 'avatarUrl', 'unionId')
+        openId, nickName, gender, city, province, country, avatarUrl, unionId = fruit.values_at('openId', 'nickName', 'gender', 'city', 'province', 'country', 'avatarUrl', 'unionId')
 
       else
         print "msg:解密失败"
