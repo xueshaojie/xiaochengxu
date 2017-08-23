@@ -24,9 +24,7 @@ class WxUsersController < ApplicationController
       session[:third_session][:openid] = openid
       session[:third_session][:session_key] = session_key
 
-      unless WxUser.find_by_openid(openid)?
-        WxUser.create(openid: openid)
-      end
+      WxUser.create(openid: openid) unless WxUser.find_by_openid(openid)?
 
       #result1 = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
       result2 = WXBizDataCrypt.new(app_id, session_key)
