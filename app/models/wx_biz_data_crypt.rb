@@ -5,60 +5,60 @@ require 'socket'
 require 'thread'
 require 'digest/sha1'
 
-class WxBizDataCrypt
-  def initialize(app_id, session_key)
-    @app_id = app_id
-    @session_key = Base64.decode64(session_key)
-  end
-
-  def decrypt(encrypted_data, iv)
-    encrypted_data = Base64.decode64(encrypted_data)
-    iv = Base64.decode64(iv)
-
-    cipher = OpenSSL::Cipher::AES.new(128, :CBC)
-    cipher.decrypt
-    # cipher.padding = 0
-    cipher.key = @session_key
-    cipher.iv  = iv
-    #data = cipher.update(encrypted_data) + cipher.final
-    #result = JSON.parse(data[0...-data.last.ord])
-    result = JSON.parse(cipher.update(encrypted_data) + cipher.final)
-
-    raise '解密错误' if result['watermark']['appid'] != @app_id
-    result
-  end
-end
-
-# class WXBizDataCrypt
-#   attr_accessor :app_id, :session_key
-#
+# class WxBizDataCrypt
 #   def initialize(app_id, session_key)
 #     @app_id = app_id
-#     @session_key = session_key
+#     @session_key = Base64.decode64(session_key)
 #   end
 #
 #   def decrypt(encrypted_data, iv)
-#     session_key = Base64.decode64(@session_key)
-#     encrypted_data= Base64.decode64(encrypted_data)
+#     encrypted_data = Base64.decode64(encrypted_data)
 #     iv = Base64.decode64(iv)
 #
-#     cipher = OpenSSL::Cipher::AES128.new(:CBC)
+#     cipher = OpenSSL::Cipher::AES.new(128, :CBC)
 #     cipher.decrypt
-#     cipher.key = session_key
-#     cipher.iv = iv
+#     # cipher.padding = 0
+#     cipher.key = @session_key
+#     cipher.iv  = iv
+#     #data = cipher.update(encrypted_data) + cipher.final
+#     #result = JSON.parse(data[0...-data.last.ord])
+#     result = JSON.parse(cipher.update(encrypted_data) + cipher.final)
 #
-#     decrypted = JSON.parse(cipher.update(encrypted_data) + cipher.final)
-#     raise('Invalid Buffer') if decrypted['watermark']['appid'] != @app_id
-#
-#     decrypted
+#     raise '解密错误' if result['watermark']['appid'] != @app_id
+#     result
 #   end
 # end
+
+class WxBizDataCrypt
+  attr_accessor :app_id, :session_key
+
+  def initialize(app_id, session_key)
+    @app_id = app_id
+    @session_key = session_key
+  end
+
+  def decrypt(encrypted_data, iv)
+    session_key = Base64.decode64(@session_key)
+    encrypted_data= Base64.decode64(encrypted_data)
+    iv = Base64.decode64(iv)
+
+    cipher = OpenSSL::Cipher::AES128.new(:CBC)
+    cipher.decrypt
+    cipher.key = session_key
+    cipher.iv = iv
+
+    decrypted = JSON.parse(cipher.update(encrypted_data) + cipher.final)
+    raise('Invalid Buffer') if decrypted['watermark']['appid'] != @app_id
+
+    decrypted
+  end
+end
 
 # app_id = 'wxf3c6f40bea069985'
 # iv = 'BK54qx9bQJuyIIHFpXSeQg=='
 # session_key = 'pXZ5FQbcbYJFN1EojDBDEg=='
 # encrypted_data = 'rG20eSAOKIjMJpv3j31WbCS7RDTrDUYJECqt0lS9jkEk3rEybF5tV5WPbGAzoujPgsrADQDAkm4RkMX4ZUDYYn56HD3vKDnSaPMPFfPCIyiFMdHqFqLo%2BzeQ9C3AyXX8puCOsloDz%2BE8q8%2Fdd7I7RG7iNfyUU8K2LzmyPezwZq4zakt5Z5bkcIKHScIdUYSI67mXS6%2FpGEbgC5CxzCvDHGWBDFd%2F6lcMWvUV3wnXFzjT5mGfj6S%2BMVSDNWLVynFpFSlCUQcC7HV94iTQKCRd6ymHfGR378pTZCZIahXFWl%2BiJdBHwkweqr6JKhYM05%2BRh51On%2FaYjNlIGLOZjPoIMQYPod5ulrtxU2sCAGlrZZbVKpl7Se06xqUBJtBRpWXGsRZnj%2BFOaqLfwPEJxXqmbGSWIJK02psD0FKZaUcXM9DkDzQl7wpjcg%2FdKc9DMZwUJPv9PRGqwHwtIY4FGjLTr6kK4DlqMqXUIitLDzlqmSs%3D'
-#
+
 # app_id = 'wx4f4bc4dec97d474b'
 # iv = 'r7BXXKkLb8qrSNn05n0qiA=='
 # session_key = 'tiihtNczf5v6AKRyjwEUhQ=='
