@@ -3,7 +3,7 @@ class WxUsersController < ApplicationController
   def wei_xin_login
 
     js_code = params[:code];
-    encryptedData = params[:encryptedData];
+    encrypted_data = params[:encryptedData];
     iv = params[:iv];
     appid = 'wxf3c6f40bea069985';
     secret = '454126a4ac934e556c5565f840dff609';
