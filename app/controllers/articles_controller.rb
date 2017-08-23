@@ -70,29 +70,29 @@ class ArticlesController < ApplicationController
 
     redirect_to articles_path
   end
-
-  def weixinlogin(user_id=null)
-    global App_Error_Conf,Gift_Ids,Server_Http_Path,Is_Local,Test_User,Good_Vcode,WeiXin_Xd_Conf;
-    validator_result = input_validator(array('code','iv','encryptedData'));
-    return response(validator_result) unless validator_result.empty?
-
-    js_code = params[:code];
-    encryptedData = params[:encryptedData];
-    iv = params[:iv];
-    appid = 'wxf3c6f40bea069985';
-    secret = '454126a4ac934e556c5565f840dff609';
-    grant_type = 'authorization_code';
-    # 从微信获取session_key
-    user_info_url = WeiXin_Xd_Conf['code2session_url'];
-    user_info_url = ("%s?appid=%s&secret=%s&js_code=%s&grant_type=%",user_info_url,appid,secret,js_code,grant_type).to_s;
-    weixin_user_data = json_decode(get_url(user_info_url));
-    # session_key = weixin_user_data->session_key;
-    session_key = json.get("session_key").to_s;
-    # 解密数据
-    data = '';
-    wxBizDataCrypt = WXBizDataCrypt.new(appid, session_key);
-    errCode=wxBizDataCrypt>decryptData(appid,session_key,encryptedData, iv, data );
-  end
+  #
+  # def weixinlogin(user_id=null)
+  #   global App_Error_Conf,Gift_Ids,Server_Http_Path,Is_Local,Test_User,Good_Vcode,WeiXin_Xd_Conf;
+  #   validator_result = input_validator(array('code','iv','encryptedData'));
+  #   return response(validator_result) unless validator_result.empty?
+  #
+  #   js_code = params[:code];
+  #   encryptedData = params[:encryptedData];
+  #   iv = params[:iv];
+  #   appid = 'wxf3c6f40bea069985';
+  #   secret = '454126a4ac934e556c5565f840dff609';
+  #   grant_type = 'authorization_code';
+  #   # 从微信获取session_key
+  #   user_info_url = WeiXin_Xd_Conf['code2session_url'];
+  #   user_info_url = ("%s?appid=%s&secret=%s&js_code=%s&grant_type=%",user_info_url,appid,secret,js_code,grant_type).to_s;
+  #   weixin_user_data = json_decode(get_url(user_info_url));
+  #   # session_key = weixin_user_data->session_key;
+  #   session_key = json.get("session_key").to_s;
+  #   # 解密数据
+  #   data = '';
+  #   wxBizDataCrypt = WXBizDataCrypt.new(appid, session_key);
+  #   errCode=wxBizDataCrypt>decryptData(appid,session_key,encryptedData, iv, data );
+  # end
 
 
   # @ResponseBody
