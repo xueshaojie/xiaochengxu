@@ -5,7 +5,7 @@ require 'socket'
 require 'thread'
 require 'digest/sha1'
 
-class WXBizDataCrypt
+class WxBizDataCrypt
   def initialize(app_id, session_key)
     @app_id = app_id
     @session_key = Base64.decode64(session_key)

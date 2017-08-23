@@ -26,7 +26,7 @@ class WxUsersController < ApplicationController
       WxUser.create(openid: openid) unless WxUser.find_by_openid(openid)?
 
       #fruit = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
-      wx_middle = WXBizDataCrypt.new(app_id, session_key)
+      wx_middle = WxBizDataCrypt.new(app_id, session_key)
       # fruit = wx_middle.decrypt(encrypted_data, iv)
       openId, nickName, gender, city, province, country, avatarUrl, unionId = wx_middle.decrypt(encrypted_data, iv).values_at('openId', 'nickName', 'gender', 'city', 'province', 'country', 'avatarUrl', 'unionId')
 
