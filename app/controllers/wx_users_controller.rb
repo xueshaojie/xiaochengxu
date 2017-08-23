@@ -28,7 +28,16 @@ class WxUsersController < ApplicationController
       #fruit = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
       wx_middle = WxBizDataCrypt.new(app_id, session_key).decrypt(encrypted_data, iv)
       # fruit = wx_middle.decrypt(encrypted_data, iv)
-      openId, nickName, gender, city, province, country, avatarUrl, unionId = wx_middle.values_at('openId', 'nickName', 'gender', 'city', 'province', 'country', 'avatarUrl', 'unionId')
+      openId, nickName, gender, city, province, country, avatarUrl, unionid = wx_middle.values_at('openId', 'nickName', 'gender', 'city', 'province', 'country', 'avatarUrl', 'unionId')
+      # openId = wx_middle.values_at('openId')
+      # nickName = wx_middle.values_at('nickName')
+      # gender = wx_middle.values_at('gender')
+      # city = wx_middle.values_at('city')
+      # province = wx_middle.values_at('province')
+      # country = wx_middle.values_at('country')
+      # avatarUrl = wx_middle.values_at('avatarUrl')
+      # unionid = wx_middle.values_at('unionId')
+
 
       if openId == openid
         WxUser.find_by_openid(openid).update(
@@ -38,7 +47,7 @@ class WxUsersController < ApplicationController
           province: province,
           country: country,
           avatarUrl: avatarUrl,
-          unionId: unionId
+          unionid: unionid
         )
       end
 
