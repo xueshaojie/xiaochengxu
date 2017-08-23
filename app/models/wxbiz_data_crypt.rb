@@ -11,7 +11,7 @@ class WXBizDataCrypt
     @session_key = Base64.decode64(session_key)
   end
 
-  def decrypt(encrypted_data, iv)
+  def self.decrypt(encrypted_data, iv)
     encrypted_data = Base64.decode64(encrypted_data)
     iv = Base64.decode64(iv)
 
