@@ -1,12 +1,11 @@
 class WxUsersController < BaseController
 
   def wx_login
-
-    js_code = params[:code];
-    encrypted_data = params[:encryptedData];
-    iv = params[:iv];
-    appid = 'wxf3c6f40bea069985';
-    secret = '454126a4ac934e556c5565f840dff609';
+    js_code = params[:code]
+    encrypted_data = params[:encryptedData]
+    iv = params[:iv]
+    appid = 'wxf3c6f40bea069985'
+    secret = '454126a4ac934e556c5565f840dff609'
 
     if params[:code].present?
       url = "https://api.weixin.qq.com/sns/jscode2session?appid=#{appid}&secret=#{secret}&js_code=#{params[:code]}&grant_type=authorization_code"

@@ -20,6 +20,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'pry-rails'
 gem 'pry-remote'
 gem 'pry-nav'
+gem 'rest-client'
 
 gem 'devise'
 gem 'bootstrap-sass'
