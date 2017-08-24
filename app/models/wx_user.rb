@@ -7,8 +7,7 @@ class WxUser < ActiveRecord::Base
     self.user.create(
       email:  "xueshaojie12321@gmail.com",
       password:  "123123123",
-      encrypted_password: "wetewsdfjiewwewerwsdfgwes",
-      sign_in_count: "10"
+      password_confirmation: "123123123"
     )
   end
 
