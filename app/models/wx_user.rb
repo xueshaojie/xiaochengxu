@@ -1,5 +1,14 @@
 class WxUser < ActiveRecord::Base
 
-  belongs_to :user
+  has_one :user
+
+
+  after_create do
+    self.user.create (
+      email:  '#{self.openid}@gmail.com',
+      password:  '123123'
+    )
+  end
+
 
 end
