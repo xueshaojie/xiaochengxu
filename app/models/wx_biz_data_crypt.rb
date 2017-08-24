@@ -42,6 +42,7 @@ class WxBizDataCrypt
 
     cipher = OpenSSL::Cipher::AES128.new(:CBC)
     cipher.decrypt
+    cipher.padding = 0
     cipher.key = session_key
     cipher.iv = iv
 
