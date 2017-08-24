@@ -24,28 +24,6 @@ class WxUsersController < ApplicationController
       WxUser.create(openid: openid) unless WxUser.find_by_openid(openid)?
 
       wx_middle = WxBizDataCrypt.new(app_id, session_key).decrypt(encrypted_data, iv)
-      # nickName = wx_middle.values_at('nickName').first
-      # openId = wx_middle.values_at('openId').first
-      # gender = wx_middle.values_at('gender').first
-      # city = wx_middle.values_at('city').first
-      # province = wx_middle.values_at('province').first
-      # country = wx_middle.values_at('country').first
-      # avatarUrl = wx_middle.values_at('avatarUrl').first
-      # unionid = wx_middle.values_at('unionId').first
-      #
-      #
-      # if openId == openid
-      #   WxUser.find_by_openid(openid).update(
-      #     nickName: nickName,
-      #     gender: gender,
-      #     city: city,
-      #     province: province,
-      #     country: country,
-      #     avatarUrl: avatarUrl,
-      #     unionid: unionid
-      #   )
-      # end
-
     end
   end
 
