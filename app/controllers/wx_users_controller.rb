@@ -26,7 +26,7 @@ class WxUsersController < BaseController
       WxUser.create(openid: openid) unless WxUser.find_by_openid(openid)
 
 
-      wx_middle = WxBizDataCrypt.new(appid, session_key).decrypt(encrypted_data, iv)
+      wx_middle = WxBizDataCrypt.new(app_id, session_key).decrypt(encrypted_data, iv)
 
       nickName = wx_middle.values_at('nickName').first
       openId = wx_middle.values_at('openId').first
