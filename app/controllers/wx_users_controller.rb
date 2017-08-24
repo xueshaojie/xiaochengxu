@@ -23,7 +23,7 @@ class WxUsersController < ApplicationController
       session[:third_session][:session_key] = session_key
       WxUser.create(openid: openid) unless WxUser.find_by_openid(openid)?
 
-      wx_middle = WxBizDataCrypt.new(app_id, session_key).decrypt(encrypted_data, iv)
+      #wx_middle = WxBizDataCrypt.new(app_id, session_key).decrypt(encrypted_data, iv)
     end
   end
 
