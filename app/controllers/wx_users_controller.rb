@@ -1,4 +1,4 @@
-class WxUsersController < ApplicationController
+class WxUsersController < BaseController
 
   def wx_login
 
