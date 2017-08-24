@@ -29,14 +29,14 @@ class WxUsersController < ApplicationController
       wx_middle = WxBizDataCrypt.new(app_id, session_key).decrypt(encrypted_data, iv)
       # fruit = wx_middle.decrypt(encrypted_data, iv)
       # openId, nickName, gender, city, province, country, avatarUrl, unionid = wx_middle.values_at('openId', 'nickName', 'gender', 'city', 'province', 'country', 'avatarUrl', 'unionId')
-      nickName = wx_middle.values_at('nickName')
-      openId = wx_middle.values_at('openId')
-      gender = wx_middle.values_at('gender')
-      city = wx_middle.values_at('city')
-      province = wx_middle.values_at('province')
-      country = wx_middle.values_at('country')
-      avatarUrl = wx_middle.values_at('avatarUrl')
-      unionid = wx_middle.values_at('unionId')
+      nickName = wx_middle.values_at('nickName').first
+      openId = wx_middle.values_at('openId').first
+      gender = wx_middle.values_at('gender').first
+      city = wx_middle.values_at('city').first
+      province = wx_middle.values_at('province').first
+      country = wx_middle.values_at('country').first
+      avatarUrl = wx_middle.values_at('avatarUrl').first
+      unionid = wx_middle.values_at('unionId').first
 
 
       if openId == openid
