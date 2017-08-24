@@ -17,11 +17,11 @@ class WxBizDataCrypt
 
     cipher = OpenSSL::Cipher::AES128.new(:CBC)
     cipher.decrypt
-    cipher.padding = 0
     cipher.key = session_key
     cipher.iv = iv
 
-    decrypted = JSON.parse(cipher.update(encrypted_data) + cipher.final)
+    result = cipher.update(encrypted_data) + cipher.final
+    decrypted = JSON.parse(result)
     raise('Invalid Buffer') if decrypted['watermark']['appid'] != @app_id
 
     decrypted

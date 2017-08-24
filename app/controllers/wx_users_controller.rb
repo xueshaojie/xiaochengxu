@@ -14,7 +14,7 @@ class WxUsersController < BaseController
 
       weixin_user_data = JSON(result)
 
-      session_key = wexin_user_data.values_at('session_key').first
+      session_key = weixin_user_data.values_at('session_key').first
       openid = weixin_user_data.values_at('openid').first
 
       # session_key, openid = weixin_user_data.values_at('session_key', 'openid')
@@ -26,7 +26,7 @@ class WxUsersController < BaseController
       WxUser.create(openid: openid) unless WxUser.find_by_openid(openid)
 
 
-      wx_middle = WxBizDataCrypt.new(app_id, session_key).decrypt(encrypted_data, iv)
+      wx_middle = WxBizDataCrypt.new(appid, session_key).decrypt(encrypted_data, iv)
 
       nickName = wx_middle.values_at('nickName').first
       openId = wx_middle.values_at('openId').first
