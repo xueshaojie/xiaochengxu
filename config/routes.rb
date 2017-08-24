@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :wx_users do
-    get :wei_xin_login, on: :collection 
+    get :wx_login, on: :collection 
   end
 
   root 'welcome#index'

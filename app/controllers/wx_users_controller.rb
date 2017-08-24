@@ -1,6 +1,6 @@
 class WxUsersController < ApplicationController
 
-  def wei_xin_login
+  def wx_login
 
     js_code = params[:code];
     encrypted_data = params[:encryptedData];
