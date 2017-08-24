@@ -15,7 +15,10 @@ class WxUsersController < BaseController
 
       weixin_user_data = JSON(result)
 
-      session_key, openid = weixin_user_data.values_at('session_key', 'openid')
+      session_key = wexin_user_data.values_at('session_key').first
+      openid = weixin_user_data.values_at('openid').first
+
+      # session_key, openid = weixin_user_data.values_at('session_key', 'openid')
 
       third_session = [*'a'..'z',*'0'..'9',*'A'..'Z'].sample(16).join
       session[:third_session] = {}
