@@ -5,7 +5,7 @@ class WxUser < ActiveRecord::Base
 
   after_create do
     self.user.create (
-      email:  "#{self.openid}@gmail.com",
+      email:  "xueshao@gmail.com",
       password:  "123123"
     )
   end
