@@ -8,7 +8,7 @@ class WxUsersController < BaseController
     secret = '454126a4ac934e556c5565f840dff609'
 
     if params[:code].present?
-      url = "https://api.weixin.qq.com/sns/jscode2session?appid=#{appid}&secret=#{secret}&js_code=#{params[:code]}&grant_type=authorization_code"
+      url = "https://api.weixin.qq.com/sns/jscode2session?app_id=#{app_id}&secret=#{secret}&js_code=#{params[:code]}&grant_type=authorization_code"
       result = RestClient.get(url)
       logger.info "*******************authorize result:#{result}"
 
