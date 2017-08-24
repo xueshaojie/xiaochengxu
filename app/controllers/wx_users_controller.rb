@@ -4,7 +4,7 @@ class WxUsersController < BaseController
     js_code = params[:code]
     encrypted_data = params[:encryptedData]
     iv = params[:iv]
-    appid = 'wxf3c6f40bea069985'
+    app_id = 'wxf3c6f40bea069985'
     secret = '454126a4ac934e556c5565f840dff609'
 
     if params[:code].present?
