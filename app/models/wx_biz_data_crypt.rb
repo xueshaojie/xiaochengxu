@@ -29,7 +29,7 @@ require 'json'
 # end
 
 
-class WXBizDataCrypt
+class WxBizDataCrypt
   def initialize(app_id, session_key)
     @app_id = app_id
     @session_key = Base64.decode64(session_key)
@@ -41,7 +41,7 @@ class WXBizDataCrypt
 
     cipher = OpenSSL::Cipher::AES.new(128, :CBC)
     cipher.decrypt
-    cipher.padding = 0
+    # cipher.padding = 0
     cipher.key = @session_key
     cipher.iv  = iv
     data = cipher.update(encrypted_data) << cipher.final
