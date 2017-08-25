@@ -21,8 +21,8 @@ gem 'pry-rails'
 gem 'pry-remote'
 gem 'pry-nav'
 gem 'rest-client'
+gem 'bcrypt',       '3.1.11'
 
-gem 'devise'
 gem 'bootstrap-sass'
 gem 'acts_as_enum', '~> 1.3.1'
 
