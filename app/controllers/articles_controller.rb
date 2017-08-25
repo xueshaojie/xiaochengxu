@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     else
       @wx_user = WxUser.find_by_id(params[:wx_user_id])
       @user = @wx_user.user
-      @articles = @user.articles.latest 
+      @articles = @user.articles.latest
     end
 
     respond_to do |format|
@@ -54,6 +54,7 @@ class ArticlesController < ApplicationController
       @article.user_id = @user.id
       if @article.save
         flash[:notice] = '保存成功'
+        redirect_to articles_path 
       else
         flash[:alert] = '保存失败'
         render 'new'
