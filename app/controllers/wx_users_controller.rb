@@ -53,7 +53,7 @@ class WxUsersController < BaseController
       end
 
 
-      @wx_user = WxUser.find_by_openid(openid) resuce nil
+      @wx_user = WxUser.find_by_openid(openid) rescue nil
 
       if @wx_user
         @wx_user.update(
@@ -62,7 +62,7 @@ class WxUsersController < BaseController
         city: city,
         province: province,
         country: country,
-        avatarUrl: avatarUrl,
+        avatarUrl: avatarUrl
       )
         return render josn: {wx_user: @wx_user}
       end
