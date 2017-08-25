@@ -46,8 +46,12 @@ class ArticlesController < ApplicationController
 
     if params[:wx_user_id]
       @wx_user = WxUser.find_by_id(params[:wx_user_id])
-      current_user.id = @wx_user.user.id
-      @article.user_id = current_user.id
+      p @wx_user
+      p "***************************************************************************************************"
+      @user = @wx_user.user
+      p @user
+      p "*************************wewewerewwrw**************************************************************************"
+      @article.user_id = @user.id
     else
       @article.user_id = current_user.id
     end
