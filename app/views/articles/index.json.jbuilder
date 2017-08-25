@@ -6,3 +6,4 @@ json.articles @articles do |article|
   json.status article.status
   # json.user.email article.user.email
 end
+# json.category [[1,2][]"", ""]

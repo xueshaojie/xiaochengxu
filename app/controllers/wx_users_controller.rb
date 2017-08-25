@@ -64,7 +64,7 @@ class WxUsersController < BaseController
         country: country,
         avatarUrl: avatarUrl
       )
-        return render json: {wx_user: @wx_user}
+        return render json: {wx_user: @wx_user.to_json}
       end
 
     end

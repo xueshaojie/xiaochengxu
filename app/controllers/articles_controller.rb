@@ -41,10 +41,16 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    @article.user_id = current_user.id
-    p current_user
-    p current_user.id
-    p "************************************************************************************************************************************************"
+    # @article.user_id = current_user.id
+    # @article.user_id = params[:wx_user_id]
+
+    if params[:wx_user_id]
+      @wx_user = WxUser.find_by_id(params[:wx_user_id])
+      current_user.id = @wx_user.user.id
+      @article.user_id = current_user.id
+    else
+      @article.user_id = current_user.id
+    end
 
     if @article.save
       flash[:notice] = '保存成功'
