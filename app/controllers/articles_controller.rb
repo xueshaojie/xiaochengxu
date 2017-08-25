@@ -14,7 +14,12 @@ class ArticlesController < ApplicationController
 
   def list
     # @articles = Article.current_user.latest
-    @articles = current_user.articles.latest
+    if current_user
+      @articles = current_user.articles.latest
+    else
+      p "******************************************************************************************************"
+      @articles = @user.articles.latest
+    end
 
     respond_to do |format|
       format.html
@@ -46,11 +51,7 @@ class ArticlesController < ApplicationController
 
     if params[:wx_user_id]
       @wx_user = WxUser.find_by_id(params[:wx_user_id])
-      p @wx_user
-      p "***************************************************************************************************"
       @user = @wx_user.user
-      p @user
-      p "*************************wewewerewwrw**************************************************************************"
       @article.user_id = @user.id
     else
       @article.user_id = current_user.id
