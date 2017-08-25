@@ -51,6 +51,22 @@ class WxUsersController < BaseController
           unionid: unionid
         )
       end
+
+
+      @wx_user = WxUser.find_by_openid(openid) resuce nil
+
+      if @wx_user
+        @wx_user.update(
+        nickName: nickName,
+        gender: gender,
+        city: city,
+        province: province,
+        country: country,
+        avatarUrl: avatarUrl,
+      )
+        return render josn: {wx_user: @wx_user}
+      end
+
     end
   end
 

@@ -42,6 +42,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     @article.user_id = current_user.id
+    p current_user
+    p current_user.id
+    p "************************************************************************************************************************************************"
 
     if @article.save
       flash[:notice] = '保存成功'
