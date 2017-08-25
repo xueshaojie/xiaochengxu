@@ -17,8 +17,9 @@ class ArticlesController < ApplicationController
     if current_user
       @articles = current_user.articles.latest
     else
-      p "******************************************************************************************************"
-      @articles = @user.articles.latest
+      @wx_user = WxUser.find_by_id(params[:wx_user_id])
+      @user = @wx_user.user
+      @articles = @user.articles.latest 
     end
 
     respond_to do |format|
@@ -46,23 +47,26 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    # @article.user_id = current_user.id
-    # @article.user_id = params[:wx_user_id]
 
     if params[:wx_user_id]
       @wx_user = WxUser.find_by_id(params[:wx_user_id])
       @user = @wx_user.user
       @article.user_id = @user.id
+      if @article.save
+        flash[:notice] = '保存成功'
+      else
+        flash[:alert] = '保存失败'
+        render 'new'
+      end
     else
       @article.user_id = current_user.id
-    end
-
-    if @article.save
-      flash[:notice] = '保存成功'
-      redirect_to list_articles_path
-    else
-      flash[:alert] = '保存失败'
-      render 'new'
+      if @article.save
+        flash[:notice] = '保存成功'
+        redirect_to list_articles_path
+      else
+        flash[:alert] = '保存失败'
+        render 'new'
+      end
     end
   end
 
