@@ -5,11 +5,18 @@ class WxUser < ActiveRecord::Base
 
    after_create do
      User.create(
-       email:  "xueshaojie12321@gmail.com",
+       email:  "#{self.openid}@gmail.com",
        password:  "123123123",
        password_confirmation: "123123123",
        wx_user_id: "#{self.id}"
      )
+
+
+     if session.openid == self.openid
+       return current_user
+     else
+       print "返回错误"
+     end
    end
 
 
