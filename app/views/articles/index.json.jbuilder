@@ -2,8 +2,7 @@ json.articles @articles do |article|
   json.id article.id
   json.title article.title
   json.text article.text
-  json.category article.category
-  json.status article.status
-  # json.user.email article.user.email
+  json.category_name article.category_name
+  json.author article.user.wx_uesr.nickName
+  json.created_at article.created_at 
 end
-# json.category [[1,2][]"", ""]

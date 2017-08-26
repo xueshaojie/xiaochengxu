@@ -14,12 +14,26 @@ class ArticlesController < ApplicationController
 
   def list
     # @articles = Article.current_user.latest
-    if current_user
-      @articles = current_user.articles.latest
+    # if current_user
+    #   @articles = current_user.articles.latest
+    # else
+    #   @wx_user = WxUser.find_by_id(params[:wx_user_id])
+    #   @user = @wx_user.user
+    #   @articles = @user.articles.latest
+    # end
+
+
+    if params[:wx_user_id]
+      find_user
+      if params[:status] == "1"
+        @articles = @user.articles.publish.latest
+      elsif params[:status] == "0"
+        @articles = @user.articles.draft.latest
+      else
+        @articles = @user.articles.latest
+      end
     else
-      @wx_user = WxUser.find_by_id(params[:wx_user_id])
-      @user = @wx_user.user
-      @articles = @user.articles.latest
+      @articles = current_user.articles.latest
     end
 
     respond_to do |format|
@@ -54,7 +68,7 @@ class ArticlesController < ApplicationController
       @article.user_id = @user.id
       if @article.save
         flash[:notice] = '保存成功'
-        redirect_to articles_path 
+        redirect_to articles_path
       else
         flash[:alert] = '保存失败'
         render 'new'
@@ -95,6 +109,11 @@ class ArticlesController < ApplicationController
 
   def article_params
     params.require(:article).permit!
+  end
+
+  def find_user
+    @wx_user = WxUser.find_by_id(params[:wx_user_id])
+    @user = @wx_user.user
   end
 
 
