@@ -1,0 +1,45 @@
+<form bindsubmit="formSubmit">
+  <view class="weui-cell__hd  weui-cell__hd_in-select-after wweui-label">文章标题</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+          <view class="weui-cell__bd">
+              <input class="weui-input" id='title' name='article[title]' placeholder='请输入标题' value='{{article.title}}' />
+          </view>
+      </view>
+  </view>
+
+  <view class="weui-cell weui-cell_select">
+      <view class="weui-cell__hd weui-cell__hd_in-select-after">
+          <view class="weui-label">文章分类</view>
+      </view>
+      <view class="weui-cell__bd" >
+        <picker bindchange="bindCategoryChange" name="article[category]" value="{{categoryIndex}}"  range="{{categories}}">
+          <input type="hidden" disabled="true" class="weui-select weui-select_in-select-after" value="{{categories[categoryIndex]}}" />
+        </picker>
+      </view>
+  </view>
+
+  <view class="weui-cell weui-cell_select">
+    <view class="weui-cell__hd weui-cell__hd_in-select-after">
+      <view class="weui-label">文章状态</view>
+    </view>
+    <view class='weui-cell__bd'>
+      <picker bindchange="bindStatusChange" name="article[status]" value="{{statusIndex}}" range="{{status}}">
+          <input type="hidden" disabled="true" class="weui-select weui-select_in-select-after" value="{{status[statusIndex]}}" />
+      </picker>
+    </view>
+  </view>
+
+
+  <view class="weui-cell__hd  weui-cell__hd_in-select-after weui-label">文章内容</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+          <textarea id='text' name='article[text]' value='{{article.text}}' class="weui-textarea weui-input" placeholder="请输入文章" style="height: 8.3em" />
+      </view>
+    </view>
+  </view>
+  <view class="weui-btn-area">
+      <button class="weui-btn" type="primary" bindtap="bindViewTap" formType="submit">确定</button>
+  </view>
+</form>

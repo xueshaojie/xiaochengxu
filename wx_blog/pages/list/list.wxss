@@ -1,0 +1,53 @@
+
+page,
+.page,
+.page__bd{
+    height: 100%;
+}
+.page__bd{
+    padding-bottom: 0;
+}
+.weui-tab__content{
+    padding-top: 10px;
+}
+
+.container-main {
+  height: 100%;
+  display: block;
+}
+.article-list {
+  margin-top: 1px;
+}
+.article-title {
+  color: #2c3e50;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: bold;
+  padding-bottom: 5px;
+}
+.list-item {
+  position: relative;
+  padding: 10px 0 10px 10px;
+  font-size: 14px;
+  padding-right: 10px;
+  background: #fff;
+  border-bottom: 3px solid #999;
+}
+.title {
+  overflow: hidden;
+  padding-bottom: 3px;
+}
+.title-name {
+  float: left;
+  line-height: 30px;
+  margin-left: 1px;
+  font-size: 16px;
+}
+.text {
+  overflow: hidden;
+  padding-bottom: 3px;
+}
+
+.create-time {
+  color: #666;
+}

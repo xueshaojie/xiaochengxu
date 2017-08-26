@@ -1,0 +1,42 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/blog/blog",
+    "pages/new/new",
+    "pages/list/list"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "博客",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#268dcd",
+    "borderStyle": "white",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/blog/blog",
+        "text": "文章列表",
+        "iconPath": "images/list_view.png",
+        "selectedIconPath": "images/list_view.png"
+      },
+      {
+        "pagePath": "pages/new/new",
+        "text": "发表文章",
+        "iconPath": "images/3.png",
+        "selectedIconPath": "images/3.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "我的文章",
+        "iconPath": "images/1.png",
+        "selectedIconPath": "images/1.png"
+      }
+
+    ]
+  }
+}

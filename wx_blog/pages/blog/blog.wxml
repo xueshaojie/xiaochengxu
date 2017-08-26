@@ -1,0 +1,22 @@
+<view class="container-main">
+
+  <block wx:for="{{articles}}" wx:key="articles" wx:for-item="article">
+    <view class="list-item" id="{{article.id}}" title="{{article.title}}" >
+
+      <view class="title">
+        <view class="title-name">标题：{{article.title}}</view>
+      </view>
+
+      <view class="title">
+        <view class="title-name">文章内容：{{article.text}}</view>
+      </view>
+
+      <view class="bar-container">
+        <view class="create-time">作者：{{article.author}} 创建时间：{{article.created_at}}</view>
+      </view>
+
+
+    </view>
+  </block>
+
+</view>
